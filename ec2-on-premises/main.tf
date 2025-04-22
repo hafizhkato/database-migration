@@ -117,7 +117,7 @@ resource "aws_instance" "mysql_onprem" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
   key_name               = var.key_name
-  subnet_id              = aws_subnet.default_subnet.id
+  subnet_id              = aws_subnet.subnet_a.id 
   vpc_security_group_ids = [aws_security_group.mysql_sg.id]
   user_data              = file("scripts/install_mysql.sh")
 
