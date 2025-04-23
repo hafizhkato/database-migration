@@ -20,7 +20,7 @@ resource "aws_security_group" "rds_sg" {
     from_port   = 3306  # MySQL default port
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # WARNING: Too permissive! Restrict to specific IPs in production.
+    cidr_blocks = ["0.0.0.0/0"]  # WARNING: Too permissive! Restrict to specific IPs in production. Only allow your AWS DMS that you will setup later.
   }
 
   # Egress rule: Allow all outbound traffic
@@ -43,6 +43,7 @@ resource "aws_db_instance" "mysql_rds" {
   db_name           = var.db_name           # Initial database name (set via variable)
   username          = var.db_username       # Master username (set via variable)
   password          = var.db_password       # Master password (set via variable)
+  #it is not recommend to store password here. You can use SSM to store any secret and call it from there.
 
   vpc_security_group_ids = [aws_security_group.rds_sg.id]  # Attaches the security group
   db_subnet_group_name   = aws_db_subnet_group.mysql_subnet_group.name  # Uses the subnet group
