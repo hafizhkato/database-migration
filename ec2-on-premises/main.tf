@@ -13,7 +13,7 @@ resource "aws_subnet" "subnet_b" {
   vpc_id                  = data.aws_vpc.default.id
   cidr_block              = cidrsubnet(data.aws_vpc.default.cidr_block, 8, 2) # 2nd subnet
   availability_zone       = "ap-southeast-1b"
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   tags = {
     Name = "public-subnet-1b"
   }
@@ -23,7 +23,7 @@ resource "aws_subnet" "subnet_c" {
   vpc_id                  = data.aws_vpc.default.id
   cidr_block              = cidrsubnet(data.aws_vpc.default.cidr_block, 8, 3) # 3rd subnet
   availability_zone       = "ap-southeast-1c"
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   tags = {
     Name = "public-subnet-1c"
   }
